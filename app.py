@@ -144,6 +144,7 @@ if counts:
     # ---------- Analytics Visualization ----------
     st.subheader("Analytics Visualization")
     pivot = df_counts.pivot_table(index="Tag", columns=["Quarter", "Result"], values="Total").fillna(0)
+    pivot.columns = [f"{q}_{r}" for q, r in pivot.columns]  # flatten MultiIndex
     st.bar_chart(pivot)
 else:
     st.write("No tags yet.")
